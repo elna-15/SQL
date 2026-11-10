@@ -1,0 +1,90 @@
+SQL> --WAQTD AVG SALARY OF EACH DEPT IF AVG SAL IS LESS THAN 3000
+SQL> SELECT AVG(SAL),DEPTNO
+  2  FROM EMP
+  3  GROUP BY DEPTNO
+  4  HAVING AVG(SAL)<3000;
+
+  AVG(SAL)     DEPTNO                                                           
+---------- ----------                                                           
+1566.66667         30                                                           
+      2175         20                                                           
+2916.66667         10                                                           
+
+SQL> --WAQTD DEPTNO IF THERE ARE ATLEAST 3 EMP IN EACH DEPT WHOS
+SQL> --NAME HAS CHAR 'A' OR 'S'...
+SQL> SELECT DEPTNO
+  2  FROM EMP
+  3  WHERE ENAME LIKE '%A%S%'
+  4  GROUP BY DEPTNO
+  5  HAVING DEPTNO>=3;
+
+    DEPTNO                                                                      
+----------                                                                      
+        30                                                                      
+        20                                                                      
+
+SQL> SELECT DEPTNO,COUNT(*)
+  2  FROM EMP
+  3  WHERE ENAME LIKE '%A%S%'
+  4  GROUP BY DEPTNO
+  5  SELECT DEPTNO,COUNT(*)>=3;
+SELECT DEPTNO,COUNT(*)>=3
+*
+ERROR at line 5:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> SELECT DEPTNO,COUNT(*)
+  2  FROM EMP
+  3  WHERE ENAME LIKE '%A%S%'
+  4  GROUP BY DEPTNO
+  5  HAVING COUNT(*)>=3;
+
+no rows selected
+
+SQL> --WAQTD MIN AND MAX SALARIES OF EACH JOB IF MIN SAL IS MORE
+SQL> --THAN 1000 AND MAX SAL IS LESS THAN 5000.
+SQL> SELECT MAX(SAL),MIN(SAL),DEPTNO
+  2  FROM EMP
+  3  GROUP BY DEPTNO
+  4  HAVING MAX(SAL)<5000 AND MIN(SAL)>1000;
+
+no rows selected
+
+SQL> --WAQTD DEPTNO IF THERE ARE ATLEAST 3 EMP IN EACH DEPT WHOS
+SQL> NAME HAS CHAR 'A' OR 'S'...
+SP2-0734: unknown command beginning "NAME HAS C..." - rest of line ignored.
+SQL> SELECT DEPTNO,COUNT(*)
+  2  FROM EMP
+  3  WHERE ENAME LIKE '%A%' OR '%S%'
+  4  GROUP BY DEPTNO
+  5  HAVING COUNT(*)>=3;
+GROUP BY DEPTNO
+*
+ERROR at line 4:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT DEPTNO,COUNT(*)
+  2  FROM EMP
+  3  WHERE ENAME LIKE '%A%' OR ENAME LIKE '%S%'
+  4  GROUP BY DEPTNO
+  5  HAVING COUNT(*)>=3;
+
+    DEPTNO   COUNT(*)                                                           
+---------- ----------                                                           
+        30          5                                                           
+        20          4                                                           
+
+SQL> SELECT MAX(SAL),MIN(SAL),JOB
+  2  FROM EMP
+  3  GROUP BY JOB
+  4  HAVING MAX(SAL)<5000 AND MIN(SAL)>1000;
+
+  MAX(SAL)   MIN(SAL) JOB                                                       
+---------- ---------- ---------                                                 
+      1600       1250 SALESMAN                                                  
+      2975       2450 MANAGER                                                   
+      3000       3000 ANALYST                                                   
+
+SQL> SPOOL OFF

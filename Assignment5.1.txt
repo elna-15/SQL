@@ -1,0 +1,264 @@
+SQL> --WAQTD ALL THE EMPLOYEES WHOSE NAME STARTS WITH 'M' OR
+SQL> 'T'.
+SP2-0042: unknown command "'T'." - rest of line ignored.
+SQL> SELECT * FROM EMP WHERE ENAME LIKE 'M%' OR ENAME LIKE 'T%';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+SQL> --WAQTD ALL THE ANALYSTS IN DEPT NUMBER 20 AND HAVING
+SQL> --SALARY GREATER THAN 2500.
+SQL> SELECT * FROM EMP WHERE JOB='ANALYST' AND DEPTNO IN 20 AND SAL>2500;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+
+SQL> --WAQTD ALL THE EMPLOYEES WITH ANNUAL SALARY EXCEPT
+SQL> --THOSE WHO ARE WORKING IN DEPT 30.
+SQL> SELECT EMP.*,(SAL*12) FROM EMP WHERE DEPTNO NOT IN 30;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO   (SAL*12)                                                           
+---------- ----------                                                           
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20       9600                                                           
+                                                                                
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20      35700                                                           
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10      29400                                                           
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO   (SAL*12)                                                           
+---------- ----------                                                           
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20      36000                                                           
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10      60000                                                           
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20      13200                                                           
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO   (SAL*12)                                                           
+---------- ----------                                                           
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20      36000                                                           
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10      15600                                                           
+                                                                                
+
+8 rows selected.
+
+SQL> --WAQTD THE EMPLOYEES WHOSE NAME DOES NOT END WITH 'ES'
+SQL> OR 'R'.
+SP2-0042: unknown command "OR 'R'." - rest of line ignored.
+SQL> 
+SQL> SELECT * FROM EMP WHERE ENAME NOT LIKE '%ES' OR ENAME NOT LIKE '%R';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7566 JONES      MANAGER         7839 02-APR-81       2975                 
+        20                                                                      
+                                                                                
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7900 JAMES      CLERK           7698 03-DEC-81        950                 
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+14 rows selected.
+
+SQL> SELECT * FROM EMP WHERE ENAME NOT LIKE '%ES' AND ENAME NOT LIKE '%R';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7369 SMITH      CLERK           7902 17-DEC-80        800                 
+        20                                                                      
+                                                                                
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400      
+        30                                                                      
+                                                                                
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                 
+        30                                                                      
+                                                                                
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7839 KING       PRESIDENT            17-NOV-81       5000                 
+        10                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+
+10 rows selected.
+
+SQL> --WAQTD ALL THE EMPLOYEES WHO ARE HAVING REPORTING
+SQL> MANAGERS IN DEPT 10 ALONG WITH 10% HIKE IN SALARY.
+SP2-0734: unknown command beginning "MANAGERS I..." - rest of line ignored.
+SQL> SELECT EMP.*,(SAL+(SAL*0.1)) FROM EMP WHERE MGR IS NOT NULL AND DEPTNO IN 10;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO (SAL+(SAL*0.1))                                                      
+---------- ---------------                                                      
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                 
+        10            2695                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10            1430                                                      
+                                                                                
+
+SQL> --WAQTD ALL THE EMPLOYEES WHO ARE 'SALESMAN' HAVING 'E' AS
+SQL> THE LAST BUT ONE CHARACTER IN ENAME BUT SALARY HAVING
+SP2-0734: unknown command beginning "THE LAST B..." - rest of line ignored.
+SQL> EXACTLY 4 DIGITS.
+SP2-0734: unknown command beginning "EXACTLY 4 ..." - rest of line ignored.
+SQL> SELECT * FROM EMP WHERE JOB ='SALESMAN' AND ENAME LIKE '%E' AND SAL LIKE '____';
+
+no rows selected
+
+SQL> SELECT * FROM EMP WHERE JOB ='SALESMAN' AND ENAME LIKE '%E_' AND SAL LIKE '____';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0      
+        30                                                                      
+                                                                                
+
+SQL> --WAQTD ALL THE EMPLOYEES WHO ARE JOINED AFTER YEAR 81.
+SQL> SELECT * FROM EMP WHERE HIREDATE>'31-DEC-1981';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                 
+        20                                                                      
+                                                                                
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                 
+        10                                                                      
+                                                                                
+
+SQL> 

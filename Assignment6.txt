@@ -1,0 +1,243 @@
+SQL> --WAQTD NUMBER OF EMPLOYEES WORKING IN EACH DEPARTEMENT
+SQL> --EXCEPT PRESIDENT.
+SQL> SELECT COUNT(*),DNAME
+  2  FROM EMP
+  3  WHERE JOB!='PRESIDENT'
+  4  GROUP BY DNAME;
+GROUP BY DNAME
+         *
+ERROR at line 4:
+ORA-00904: "DNAME": invalid identifier 
+
+
+SQL> SELECT COUNT(*),DNAME
+  2  
+SQL> SELECT COUNT(*),DEPTNAME
+  2  FROM EMP
+  3  WHERE JOB!='PRESIDENT'
+  4  GROUP BY DNAME;
+GROUP BY DNAME
+         *
+ERROR at line 4:
+ORA-00904: "DNAME": invalid identifier 
+
+
+SQL> SELECT COUNT(*),DEPTNAME
+  2  FROM EMP
+  3  WHERE JOB!='PRESIDENT'
+  4  GROUP BY DEPTNAME;
+GROUP BY DEPTNAME
+         *
+ERROR at line 4:
+ORA-00904: "DEPTNAME": invalid identifier 
+
+
+SQL> SELECT COUNT(*),DEPTNO
+  2  FROM EMP
+  3  WHERE JOB!='PRESIDENT'
+  4  GROUP BY DEPTNO;
+
+  COUNT(*)     DEPTNO                                                           
+---------- ----------                                                           
+         6         30                                                           
+         5         20                                                           
+         2         10                                                           
+
+SQL> --WAQTD TOTAL SALARY NEEDED TO PAY ALL THE EMPLOYEES IN EACH
+SQL> --JOB.
+SQL> SELECT SUM(SAL),DEPTNO
+  2  FROM EMP
+  3  GROUP BY DEPTNO;
+
+  SUM(SAL)     DEPTNO                                                           
+---------- ----------                                                           
+      9400         30                                                           
+     10875         20                                                           
+      8750         10                                                           
+
+SQL> --WAQTD NUMBER OF EMPLOYEEES WORKING AS MANAGER IN EACH
+SQL> --DEPARTMENT.
+SQL> SELECT COUNT(*),DEPTNO
+  2  FROM EMP
+  3  WHERE JOB='MANAGER'
+  4  GROUP BY DEPTNO;
+
+  COUNT(*)     DEPTNO                                                           
+---------- ----------                                                           
+         1         30                                                           
+         1         20                                                           
+         1         10                                                           
+
+SQL> --WAQTD AVG SALARY NEEDED TO PAY ALL THE EMPLOYEES IN EACH
+SQL> --DEPARTMENT EXCLUDING THE EMPLOYEES OF DEPTNO 20.
+SQL> SELECT AVG(SAL),DEPTNO
+  2  FROM EMP
+  3  WHERE DEPTNO!=20
+  4  GROUP BY DEPTNO;
+
+  AVG(SAL)     DEPTNO                                                           
+---------- ----------                                                           
+1566.66667         30                                                           
+2916.66667         10                                                           
+
+SQL> --WAQTD NUMBER OF EMPLOYEES HAVING CHARACTER 'A' IN THEIR
+SQL> --NAMES IN EACH JOB.
+SQL> SELECT COUNT(*),JOB
+  2  FROM EMP
+  3  WHERE ENAME LIKE '%A%'
+  4  GROUP BY JOB;
+
+  COUNT(*) JOB                                                                  
+---------- ---------                                                            
+         3 SALESMAN                                                             
+         2 CLERK                                                                
+         2 MANAGER                                                              
+
+SQL> --WAQTD NUMBER OF EMPLOYEES AND AVG SALARY NEEDED TO PAY
+SQL> --THE EMPLOYEES WHO SALARY IN GREATER THAN 2000 IN EACH DEPT.
+SQL> SELECT COUNT(*),AVG(SAL)
+  2  FROM EMP
+  3  WHERE SAL>
+  4  
+SQL> SELECT COUNT(*),AVG(SAL),DEPTNO
+  2  FROM EMP
+  3  WHERE SAL>2000
+  4  GROUP BY DEPTNO;
+
+  COUNT(*)   AVG(SAL)     DEPTNO                                                
+---------- ---------- ----------                                                
+         1       2850         30                                                
+         3 2991.66667         20                                                
+         2       3725         10                                                
+
+SQL> --WAQDTD TOTAL SALARY NEEDED TO PAY AND NUMBER OF
+SQL> --SALESMANS IN EACH DEPT.
+SQL> SELECT SUM(SAL),COUNT(*),DEPTNO
+  2  FROM EMP
+  3  WHERE JOB='SALESMAN'
+  4  GROUP BY DEPTNO;
+
+  SUM(SAL)   COUNT(*)     DEPTNO                                                
+---------- ---------- ----------                                                
+      5600          4         30                                                
+
+SQL> --WAQTD NUMBER OF EMPLOYEES WITH THEIR MAXIMUM SALARIES IN
+SQL> --EACH JOB.
+SQL> SELECT COUNT(*),JOB,MAX(SAL)
+  2  FROM EMP
+  3  GROUP BY JOB;
+
+  COUNT(*) JOB         MAX(SAL)                                                 
+---------- --------- ----------                                                 
+         4 CLERK           1300                                                 
+         4 SALESMAN        1600                                                 
+         1 PRESIDENT       5000                                                 
+         3 MANAGER         2975                                                 
+         2 ANALYST         3000                                                 
+
+SQL> --WAQTD MAXIMUM SALARIES GIVEN TO AN EMPLOYEE WORKING IN
+SQL> --EACH DEPT.
+SQL> SELECT MAX(SAL),DEPTNO
+  2  FROM EMP
+  3  GROUP BY DEPTNO;
+
+  MAX(SAL)     DEPTNO                                                           
+---------- ----------                                                           
+      2850         30                                                           
+      3000         20                                                           
+      5000         10                                                           
+
+SQL> --WAQTD NUMBER OF TIMES THE SALARIES PRESENT IN EMPLOYEE
+SQL> --TABLE. U
+SQL> 
+SQL> SELECT COUNT(*)
+  2  FROM EMP
+  3  WHERE SAL NOT IN NULL
+  4  WHERE SAL NOT IN NULL
+  5  
+SQL> SELECT COUNT(*)
+  2  FROM EMP
+  3  WHERE SAL NOT IS SAL;
+WHERE SAL NOT IS SAL
+              *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT COUNT(*)
+  2  FROM EMP
+  3  WHERE SAL NOT IS NULL;
+WHERE SAL NOT IS NULL
+              *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT COUNT(*)
+  2  FROM EMP
+  3  WHERE SAL IS NOT NULL;
+
+  COUNT(*)                                                                      
+----------                                                                      
+        14                                                                      
+
+SQL> SELECT COUNT(*)
+  2  FROM EMP
+  3  WHERE SAL NOT IS SAL;
+WHERE SAL NOT IS SAL
+              *
+ERROR at line 3:
+ORA-00920: invalid relational operator 
+
+
+SQL> SELECT COUNT(*)
+  2  FROM EMP
+  3  WHERE SAL IS NOT NULL
+  4  GROUP BY SAL;
+
+  COUNT(*)                                                                      
+----------                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+         2                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+         2                                                                      
+         1                                                                      
+         1                                                                      
+         1                                                                      
+
+  COUNT(*)                                                                      
+----------                                                                      
+         1                                                                      
+
+12 rows selected.
+
+SQL> SELECT COUNT(*) ,SAL
+  2  FROM EMP
+  3  WHERE SAL IS NOT NULL
+  4  GROUP BY SAL;
+
+  COUNT(*)        SAL                                                           
+---------- ----------                                                           
+         1       2450                                                           
+         1       5000                                                           
+         1       1300                                                           
+         2       1250                                                           
+         1       2850                                                           
+         1       2975                                                           
+         1       1100                                                           
+         2       3000                                                           
+         1        800                                                           
+         1       1600                                                           
+         1       1500                                                           
+
+  COUNT(*)        SAL                                                           
+---------- ----------                                                           
+         1        950                                                           
+
+12 rows selected.
+
+SQL> spool off

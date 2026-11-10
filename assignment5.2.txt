@@ -1,0 +1,43 @@
+SQL> --WAQTD ALL THE EMPLOYEES WHO ARE JOINED IN FEBRUARY.
+SQL> SELECT * FROM EMP WHERE HIREDATE LIKE '__-FEB-____';
+
+no rows selected
+
+SQL> SELECT * FROM EMP WHERE HIREDATE LIKE '__-FEB-__';
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300      
+        30                                                                      
+                                                                                
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500      
+        30                                                                      
+                                                                                
+
+SQL> --WAQTD THE EMPLOYEES WHO ARE NOT WORKING AS MANAGERS
+SQL> AND CLERKS IN DEPT 10 AND 20 WITH A SALARY IN THE RANGE OF
+SP2-0734: unknown command beginning "AND CLERKS..." - rest of line ignored.
+SQL> 1000 TO 3000.
+SQL> SELECT * FROM EMP WHERE JOB NOT IN('MANAGER','CLERK') AND DEPTNO IN (10,20) AND SAL BETWEEN (1000,3000);
+SELECT * FROM EMP WHERE JOB NOT IN('MANAGER','CLERK') AND DEPTNO IN (10,20) AND SAL BETWEEN (1000,3000)
+                                                                                                 *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> SELECT * FROM EMP WHERE JOB NOT IN('MANAGER','CLERK') AND DEPTNO IN (10,20) AND SAL BETWEEN 1000 AND 3000;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM      
+---------- ---------- --------- ---------- --------- ---------- ----------      
+    DEPTNO                                                                      
+----------                                                                      
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                 
+        20                                                                      
+                                                                                
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                 
+        20                                                                      
+                                                                                
+
+SQL> SPOOL OFF
